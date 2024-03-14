@@ -1,5 +1,5 @@
 import { config } from "dotenv";
-import { Environment } from "../../domain/enviroment";
+import { Environment } from "../../domain/entities/enviroment.entity";
 
 if (process.env.NODE_ENV !== "prod") {
   const configFile = `.env.${process.env.NODE_ENV}`;
