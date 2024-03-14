@@ -3,4 +3,4 @@
 **/.env.dev
 **/.DS_Store
 **/node_modules
-data/
+./data

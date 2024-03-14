@@ -1,11 +1,14 @@
+import { UserRoles } from "./roles.entity";
+
 export interface User {
+  id: string;
   name: string;
   email: string;
-  phone?: string;
   password: string;
-  role: string;
+  phone?: string;
+  avatar?: string;
+  role: UserRoles;
   active: boolean;
   created_at: Date;
   updated_at?: Date;
-  avatar?: string;
 }
