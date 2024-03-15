@@ -1,6 +1,6 @@
 import express, { Application } from "express";
 import { configEnv } from "../../shared/config";
-import { MongoDatabase } from "../data/mongo/connection";
+import { MongoConnection } from "../data/mongo/connection";
 import { UserRoutes } from "./routes/user.routes";
 export class Server {
   private app: Application;
@@ -10,16 +10,11 @@ export class Server {
     this.app = express();
     this.middlewares();
     this.connectToDatabase();
+    this.routes();
   }
 
   async connectToDatabase() {
-    try {
-      await MongoDatabase.connect();
-      this.routes();
-    } catch (error) {
-      console.error("Error connecting to database:", error);
-      process.exit(0);
-    }
+    MongoConnection.getInstance();
   }
 
   middlewares() {
