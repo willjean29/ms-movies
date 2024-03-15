@@ -2,6 +2,7 @@ import express, { Application } from "express";
 import { configEnv } from "../../shared/config";
 import { MongoConnection } from "../data/mongo/connection";
 import { UserRoutes } from "./routes/user.routes";
+import "../container";
 export class Server {
   private app: Application;
   private port: number = configEnv.PORT;
