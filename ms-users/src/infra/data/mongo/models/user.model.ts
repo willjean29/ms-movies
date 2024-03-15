@@ -1,5 +1,5 @@
 import { Document, Model, Schema, model } from "mongoose";
-import { UserRoles } from "src/domain/entities/roles.entity";
+import { UserRoles } from "../../../../domain/entities/roles.entity";
 
 export interface User extends Document {
   id: string;
@@ -8,8 +8,8 @@ export interface User extends Document {
   password: string;
   phone?: string;
   avatar?: string;
-  role: string;
-  active: boolean;
+  roles: UserRoles[];
+  active?: boolean;
 }
 
 const userSchema = new Schema<User>(
@@ -35,15 +35,16 @@ const userSchema = new Schema<User>(
       type: String,
       required: false,
     },
-    role: {
-      type: String,
-      enum: Object.values(UserRoles),
-      default: UserRoles.User,
+    roles: {
+      type: [String],
+      enum: UserRoles,
+      default: [UserRoles.User],
       required: true,
     },
     active: {
       type: Boolean,
       required: true,
+      default: false,
     },
   },
   { timestamps: true }

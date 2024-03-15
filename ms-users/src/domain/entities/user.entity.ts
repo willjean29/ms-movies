@@ -7,8 +7,8 @@ export interface User {
   password: string;
   phone?: string;
   avatar?: string;
-  role: UserRoles;
-  active: boolean;
+  roles: UserRoles[];
+  active?: boolean;
   created_at: Date;
   updated_at?: Date;
 }

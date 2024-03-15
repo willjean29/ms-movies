@@ -3,11 +3,8 @@ import { UserDatasource } from "../../domain/datasources/user.datasource";
 import { CreateUser } from "src/domain/entities/create-user.entity";
 
 export class UserRepository implements IUserRepository {
-  private readonly UserDatasource: UserDatasource;
-  constructor(userDatasource: UserDatasource) {
-    this.UserDatasource = userDatasource;
-  }
+  constructor(private readonly userDatasource: UserDatasource) {}
   async create(data: CreateUser) {
-    return this.UserDatasource.create(data);
+    return this.userDatasource.create(data);
   }
 }
