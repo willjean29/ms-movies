@@ -1,5 +1,5 @@
-import { CreateUser } from "../entities/create-user.entity";
-import { User } from "../entities/user.entity";
+import { CreateUser } from "@domain/entities/create-user.entity";
+import { User } from "@domain/entities/user.entity";
 
 export interface UserRepository {
   // findAll(): Promise<User[]>;

@@ -1,6 +1,6 @@
-import { UserRepository as IUserRepository } from "../../domain/repositories/user.repository";
-import { UserDatasource } from "../../domain/datasources/user.datasource";
-import { CreateUser } from "src/domain/entities/create-user.entity";
+import { UserRepository as IUserRepository } from "@domain/repositories/user.repository";
+import { UserDatasource } from "@domain/datasources/user.datasource";
+import { CreateUser } from "@domain/entities/create-user.entity";
 import { inject, injectable } from "tsyringe";
 @injectable()
 export class UserRepository implements IUserRepository {

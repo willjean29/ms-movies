@@ -1,4 +1,4 @@
-import { UserRoles } from "./roles.entity";
+import { UserRoles } from "@domain/entities/roles.entity";
 
 export interface User {
   id: string;

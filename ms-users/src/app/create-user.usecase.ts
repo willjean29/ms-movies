@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
-import { CreateUser } from "../domain/entities/create-user.entity";
-import { User } from "../domain/entities/user.entity";
-import { UserRepository } from "../domain/repositories/user.repository";
+import { CreateUser } from "@domain/entities/create-user.entity";
+import { User } from "@domain/entities/user.entity";
+import { UserRepository } from "@domain/repositories/user.repository";
 
 @injectable()
 export class CreateUserUseCase {
