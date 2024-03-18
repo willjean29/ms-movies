@@ -9,4 +9,12 @@ export class MongoUserDatasource implements UserDatasource {
     const user = await model.save();
     return mapperToUser(user);
   }
+
+  async findById(userId: string): Promise<IUser | null> {
+    const user = await UserModel.findById(userId);
+    if (!user) {
+      return null;
+    }
+    return mapperToUser(user);
+  }
 }
