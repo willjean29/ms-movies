@@ -10,6 +10,8 @@ export interface User extends Document {
   avatar?: string;
   roles: UserRoles[];
   active?: boolean;
+  createdAt: Date;
+  updatedAt?: Date;
 }
 
 const userSchema = new Schema<User>(
