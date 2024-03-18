@@ -2,7 +2,7 @@ import { UserRepository as IUserRepository } from "@domain/repositories/user.rep
 import { UserDatasource } from "@domain/datasources/user.datasource";
 import { CreateUser } from "@domain/entities/create-user.entity";
 import { inject, injectable } from "tsyringe";
-import { User } from "@domain/entities/user.entity";
+import { User, Users } from "@domain/entities/user.entity";
 @injectable()
 export class UserRepository implements IUserRepository {
   constructor(
@@ -19,5 +19,8 @@ export class UserRepository implements IUserRepository {
   }
   async findByEmail(email: string): Promise<User | null> {
     return this.userDatasource.findByEmail(email);
+  }
+  async findAll(): Promise<Users> {
+    return this.userDatasource.findAll();
   }
 }

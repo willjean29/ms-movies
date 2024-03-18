@@ -1,8 +1,8 @@
 import { CreateUser } from "@domain/entities/create-user.entity";
-import { User } from "@domain/entities/user.entity";
+import { User, Users } from "@domain/entities/user.entity";
 
 export interface UserRepository {
-  // findAll(): Promise<User[]>;
+  findAll(): Promise<Users>;
   // findByName(name: string): Promise<User | null>;
   findByEmail(email: string): Promise<User | null>;
   findById(userId: string): Promise<User | null>;
