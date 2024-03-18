@@ -17,4 +17,12 @@ export class MongoUserDatasource implements UserDatasource {
     }
     return mapperToUser(user);
   }
+
+  async findByEmail(email: string): Promise<IUser | null> {
+    const user = await UserModel.findOne({ email: email });
+    if (!user) {
+      return null;
+    }
+    return mapperToUser(user);
+  }
 }

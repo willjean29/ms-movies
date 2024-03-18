@@ -14,7 +14,10 @@ export class UserRepository implements IUserRepository {
     return this.userDatasource.create(data);
   }
 
-  findById(userId: string): Promise<User | null> {
+  async findById(userId: string): Promise<User | null> {
     return this.userDatasource.findById(userId);
+  }
+  async findByEmail(email: string): Promise<User | null> {
+    return this.userDatasource.findByEmail(email);
   }
 }
