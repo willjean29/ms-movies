@@ -1,12 +1,12 @@
-import { CreateUser } from "@domain/entities/create-user.entity";
-import { User, Users } from "@domain/entities/user.entity";
+import { CreateUserDto } from "@domain/entities/dtos/create-user.dto";
+import { UserEntity, UsersEntity } from "@domain/entities/user.entity";
 
-export interface UserRepository {
-  findAll(): Promise<Users>;
+export interface IUserRepository {
+  findAll(): Promise<UsersEntity>;
   // findByName(name: string): Promise<User | null>;
-  findByEmail(email: string): Promise<User | null>;
-  findById(userId: string): Promise<User | null>;
-  create(data: CreateUser): Promise<User>;
+  findByEmail(email: string): Promise<UserEntity | null>;
+  findById(userId: string): Promise<UserEntity | null>;
+  create(data: CreateUserDto): Promise<UserEntity>;
   // save(data: User): Promise<User>;
   // remove(userId: string): Promise<void>;
 }

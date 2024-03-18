@@ -1,6 +1,6 @@
-import { UserRoles } from "@domain/entities/roles.entity";
+import { UserRoles } from "@domain/entities/enums/roles";
 
-export interface User {
+export interface UserEntity {
   id: string;
   name: string;
   email: string;
@@ -13,4 +13,4 @@ export interface User {
   updated_at?: Date;
 }
 
-export type Users = User[];
+export type UsersEntity = UserEntity[];

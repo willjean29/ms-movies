@@ -1,7 +1,7 @@
-import { User as IUser, Users } from "@domain/entities/user.entity";
+import { UserEntity, UsersEntity } from "@domain/entities/user.entity";
 import { User } from "@infra/data/mongo/models/user.model";
 
-export const mapperToUser = (user: User): IUser => {
+export const mapperToUser = (user: User): UserEntity => {
   return {
     id: user.id,
     name: user.name,
@@ -16,6 +16,6 @@ export const mapperToUser = (user: User): IUser => {
   };
 };
 
-export const mapperToUsers = (users: User[]): Users => {
+export const mapperToUsers = (users: User[]): UsersEntity => {
   return users.map((user) => mapperToUser(user));
 };

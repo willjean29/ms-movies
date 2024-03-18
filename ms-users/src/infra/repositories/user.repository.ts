@@ -1,26 +1,26 @@
-import { UserRepository as IUserRepository } from "@domain/repositories/user.repository";
-import { UserDatasource } from "@domain/datasources/user.datasource";
-import { CreateUser } from "@domain/entities/create-user.entity";
+import { IUserRepository } from "@domain/repositories/user.repository";
+import { IUserDatasource } from "@domain/datasources/user.datasource";
+import { CreateUserDto } from "@domain/entities/dtos/create-user.dto";
 import { inject, injectable } from "tsyringe";
-import { User, Users } from "@domain/entities/user.entity";
+import { UserEntity, UsersEntity } from "@domain/entities/user.entity";
 @injectable()
 export class UserRepository implements IUserRepository {
   constructor(
     @inject("UserDatasource")
-    private readonly userDatasource: UserDatasource
+    private readonly userDatasource: IUserDatasource
   ) {}
 
-  async create(data: CreateUser) {
+  async create(data: CreateUserDto) {
     return this.userDatasource.create(data);
   }
 
-  async findById(userId: string): Promise<User | null> {
+  async findById(userId: string): Promise<UserEntity | null> {
     return this.userDatasource.findById(userId);
   }
-  async findByEmail(email: string): Promise<User | null> {
+  async findByEmail(email: string): Promise<UserEntity | null> {
     return this.userDatasource.findByEmail(email);
   }
-  async findAll(): Promise<Users> {
+  async findAll(): Promise<UsersEntity> {
     return this.userDatasource.findAll();
   }
 }

@@ -1,5 +1,5 @@
-import { User } from "@domain/entities/user.entity";
+import { UserEntity } from "@domain/entities/user.entity";
 
-export interface FindUserById {
-  execute: (userId: string) => Promise<User | null>;
+export interface IFindUserByIdUseCase {
+  execute(userId: string): Promise<UserEntity | null>;
 }

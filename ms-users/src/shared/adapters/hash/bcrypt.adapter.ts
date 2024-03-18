@@ -1,7 +1,7 @@
-import { HashAdapter } from "@shared/adapters/hash/hash.adapter";
+import { IHashAdapter } from "@shared/adapters/hash/hash.adapter";
 import { hash, compare } from "bcrypt";
 
-export class BcryptAdapter implements HashAdapter {
+export class BcryptAdapter implements IHashAdapter {
   generateHash(payload: string): Promise<string> {
     return hash(payload, 10);
   }

@@ -1,5 +1,9 @@
 import { config } from "dotenv";
-import { Environment } from "../../domain/entities/enviroment.entity";
+export interface Environment {
+  PORT: number;
+  DB_URL: string;
+  TOKEN_APP_SECRET: string;
+}
 
 if (process.env.NODE_ENV !== "prod") {
   const configFile = `.env.${process.env.NODE_ENV}`;

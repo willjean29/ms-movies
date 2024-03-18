@@ -1,5 +1,5 @@
-import { Users } from "@domain/entities/user.entity";
+import { UsersEntity } from "@domain/entities/user.entity";
 
-export interface FindAllUserUseCase {
-  execute(): Promise<Users>;
+export interface IFindAllUserUseCase {
+  execute(): Promise<UsersEntity>;
 }
