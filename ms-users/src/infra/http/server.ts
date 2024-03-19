@@ -3,6 +3,7 @@ import { configEnv } from "@shared/config";
 import { MongoConnection } from "@infra/data/mongo/connection";
 import { UserRoutes } from "@infra/http/routes/user.routes";
 import "@infra/container";
+import { handleNotFound, handleError } from "@infra/http/middlewares/handle-error";
 export class Server {
   private app: Application;
   private port: number = configEnv.PORT;
@@ -20,6 +21,8 @@ export class Server {
 
   middlewares() {
     this.app.use(express.json());
+    this.app.use(handleNotFound);
+    this.app.use(handleError);
   }
 
   routes() {
