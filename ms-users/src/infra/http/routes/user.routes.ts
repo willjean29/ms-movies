@@ -5,7 +5,9 @@ const router = Router();
 export class UserRoutes {
   static routes() {
     const userController = new UserController();
-    router.post("/create", userController.create.bind(userController));
+    router.post("/", userController.create);
+    router.get("/:id", userController.getById);
+    router.get("/", userController.getAllUsers);
     return router;
   }
 }
