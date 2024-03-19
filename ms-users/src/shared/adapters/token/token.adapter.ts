@@ -3,7 +3,7 @@ import { inject, injectable } from "tsyringe";
 export interface TokenPayload {
   iat: number;
   exp: number;
-  sub: string;
+  id: string;
 }
 
 export interface ITokenAdapter {

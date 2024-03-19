@@ -3,6 +3,7 @@ import { UserController } from "@infra/http/controllers/user.controller";
 import { validateId } from "@infra/http/middlewares/validate-params";
 import { validateDto } from "@infra/http/middlewares/validate-dto";
 import { CreateUserDto } from "@domain/entities/dtos/create-user.dto";
+import { isAuthenticated } from "@infra/http/middlewares/is-authenticated";
 
 const router = Router();
 export class UserRoutes {
@@ -10,7 +11,7 @@ export class UserRoutes {
     const userController = new UserController();
     router.post("/", validateDto(CreateUserDto), userController.create);
     router.get("/:id", validateId, userController.getById);
-    router.get("/", userController.getAllUsers);
+    router.get("/", isAuthenticated, userController.getAllUsers);
     return router;
   }
 }
