@@ -3,8 +3,7 @@ import { IUserRepository } from "@domain/repositories/user.repository";
 import { IUserDatasource } from "@domain/datasources/user.datasource";
 import { UserRepository } from "@infra/repositories/user.repository";
 import { MongoUserDatasource } from "@infra/datasources/mongo-user.datasource";
-import { IHashAdapter } from "@shared/adapters/hash/hash.adapter";
-import { BcryptAdapter } from "@shared/adapters/hash/bcrypt.adapter";
+import { BcryptAdapter, IHashAdapter } from "@shared/adapters/hash";
 import { IIdAdapter, MongoIdAdapter } from "@shared/adapters/identifier";
 
 container.registerSingleton<IIdAdapter>("IdAdapter", MongoIdAdapter);

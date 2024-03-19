@@ -11,7 +11,6 @@ export class Server {
   constructor() {
     this.app = express();
     this.connectToDatabase();
-    this.routes();
     this.middlewares();
   }
 
@@ -21,6 +20,7 @@ export class Server {
 
   middlewares() {
     this.app.use(express.json());
+    this.routes();
     this.app.use(handleNotFound);
     this.app.use(handleError);
   }

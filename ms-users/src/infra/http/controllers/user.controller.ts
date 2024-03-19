@@ -21,7 +21,6 @@ export class UserController {
       const user = await findUserById.execute(req.params.id);
       res.json(user);
     } catch (error) {
-      console.log("error", error);
       next(error);
     }
   }
