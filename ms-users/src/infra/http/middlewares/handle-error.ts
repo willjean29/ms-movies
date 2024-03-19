@@ -12,12 +12,12 @@ export const handleError = (error: Error, req: Request, res: Response, next: Nex
     return res.status(error.statusCode).json({
       status: "error",
       message: error.message,
-      stack: error.stack,
+      details: error.details || error.stack,
     });
   }
   return res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
     status: "error",
     message: "Internal Server Error" || error.message,
-    stack: error.stack,
+    details: error.stack,
   });
 };
