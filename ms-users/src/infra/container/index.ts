@@ -5,7 +5,9 @@ import { UserRepository } from "@infra/repositories/user.repository";
 import { MongoUserDatasource } from "@infra/datasources/mongo-user.datasource";
 import { BcryptAdapter, IHashAdapter } from "@shared/adapters/hash";
 import { IIdAdapter, MongoIdAdapter } from "@shared/adapters/identifier";
+import { ITokenAdapter, JwtAdapter } from "@shared/adapters/token";
 
+container.registerSingleton<ITokenAdapter>("TokenAdapter", JwtAdapter);
 container.registerSingleton<IIdAdapter>("IdAdapter", MongoIdAdapter);
 container.registerSingleton<IHashAdapter>("HashAdapter", BcryptAdapter);
 container.registerSingleton<IUserDatasource>("UserDatasource", MongoUserDatasource);
