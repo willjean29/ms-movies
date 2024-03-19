@@ -10,9 +10,9 @@ export class Server {
 
   constructor() {
     this.app = express();
-    this.middlewares();
     this.connectToDatabase();
     this.routes();
+    this.middlewares();
   }
 
   async connectToDatabase() {

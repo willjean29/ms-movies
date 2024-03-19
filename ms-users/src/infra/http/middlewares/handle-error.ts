@@ -1,8 +1,9 @@
 import { AppError } from "@shared/error";
+import { HttpStatusCode } from "@shared/error/http-status-code";
 import { Request, Response, NextFunction } from "express";
 
 export const handleNotFound = (req: Request, res: Response, next: NextFunction) => {
-  const error = new AppError(`Not Found - ${req.originalUrl}`, 404);
+  const error = new AppError(`Not Found - ${req.originalUrl}`, HttpStatusCode.NOT_FOUND);
   next(error);
 };
 
@@ -14,8 +15,9 @@ export const handleError = (error: Error, req: Request, res: Response, next: Nex
       stack: error.stack,
     });
   }
-  return res.status(500).json({
+  return res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
     status: "error",
-    message: "Internal Server Error",
+    message: "Internal Server Error" || error.message,
+    stack: error.stack,
   });
 };
