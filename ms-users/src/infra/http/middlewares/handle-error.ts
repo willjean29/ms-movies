@@ -1,5 +1,6 @@
 import { AppError } from "@shared/error";
 import { HttpStatusCode } from "@shared/error/http-status-code";
+import { AppLogger } from "@shared/logger";
 import { Request, Response, NextFunction } from "express";
 
 export const handleNotFound = (req: Request, res: Response, next: NextFunction) => {
@@ -8,6 +9,8 @@ export const handleNotFound = (req: Request, res: Response, next: NextFunction) 
 };
 
 export const handleError = (error: Error, req: Request, res: Response, next: NextFunction) => {
+  const logger: AppLogger = new AppLogger("Middleware");
+  logger.error("Error detected", error);
   if (error instanceof AppError) {
     return res.status(error.statusCode).json({
       status: "error",

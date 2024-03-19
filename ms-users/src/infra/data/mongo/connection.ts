@@ -1,10 +1,11 @@
 import mongoose, { Mongoose } from "mongoose";
 import { configEnv } from "../../../shared/config";
+import { AppLogger } from "@shared/logger";
 
 export class MongoConnection {
   private static instance: MongoConnection;
   private mongooseInstance: Mongoose;
-
+  private logger: AppLogger = new AppLogger("Database");
   private constructor() {
     this.mongooseInstance = mongoose;
     this.connectDB();
@@ -23,8 +24,7 @@ export class MongoConnection {
     try {
       await this.mongooseInstance.connect(configEnv.DB_URL as string);
     } catch (error) {
-      console.log(error);
-      throw new Error("Error connecting to database");
+      this.logger.error("Error connecting to database", error as object);
     }
   }
 
@@ -34,13 +34,13 @@ export class MongoConnection {
 
   private openConnection() {
     this.mongooseInstance.connection.once("open", () => {
-      console.log("MongoDB connection established");
+      this.logger.info("MongoDB connection established");
     });
   }
 
   private errorConnetion() {
     this.mongooseInstance.connection.on("error", (err) => {
-      console.log(err);
+      this.logger.error("Error connecting to database", err as object);
       process.exit(0);
     });
   }
