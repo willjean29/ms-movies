@@ -1,6 +1,7 @@
 import { Router } from "express";
 import proxy from "express-http-proxy";
 import { AuthService } from "@infra/http/services/auth.service";
+import { configEnv } from "@shared/config";
 
 export class NotificationRoutes {
   static routes() {
@@ -8,7 +9,7 @@ export class NotificationRoutes {
     const authService = new AuthService();
     router.use(
       "/",
-      proxy("http://localhost:8003", {
+      proxy(configEnv.MS_NOTIFICATIONS_URL, {
         proxyReqOptDecorator: (proxyReqOpts, srcReq) => {
           authService.authenticated(srcReq);
           proxyReqOpts.headers = proxyReqOpts.headers || {};

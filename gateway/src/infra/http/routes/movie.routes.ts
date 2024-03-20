@@ -1,6 +1,7 @@
 import { Router } from "express";
 import proxy from "express-http-proxy";
 import { AuthService } from "@infra/http/services/auth.service";
+import { configEnv } from "@shared/config";
 
 export class MovieRoutes {
   router: Router = Router();
@@ -9,7 +10,7 @@ export class MovieRoutes {
     const authService = new AuthService();
     router.use(
       "/",
-      proxy("http://localhost:8002", {
+      proxy(configEnv.MS_MOVIES_URL, {
         proxyReqOptDecorator: (proxyReqOpts, srcReq) => {
           authService.authenticated(srcReq);
           proxyReqOpts.headers = proxyReqOpts.headers || {};
