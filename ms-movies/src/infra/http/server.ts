@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser";
 import { configEnv } from "@shared/config";
 import { handleNotFound, handleError } from "@infra/http/middlewares/handle-error";
 import { AppLogger } from "@shared/logger";
+import { router } from "@infra/http/routes";
 import "@infra/container";
 
 export class Server {
@@ -22,7 +23,9 @@ export class Server {
     this.app.use(handleError);
   }
 
-  async routes() {}
+  routes() {
+    this.app.use("/", router);
+  }
 
   public start(): void {
     this.app.listen(this.port, () => {

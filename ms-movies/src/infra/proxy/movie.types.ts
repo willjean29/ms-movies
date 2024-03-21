@@ -1,7 +1,7 @@
-export interface ListMovieEntity {
+export interface ListMovieApi {
   dates: Dates;
   page: number;
-  results: MovieEntity[];
+  results: MovieApi[];
   total_pages: number;
   total_results: number;
 }
@@ -11,7 +11,7 @@ export interface Dates {
   minimum: string;
 }
 
-export interface MovieEntity {
+export interface MovieApi {
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
