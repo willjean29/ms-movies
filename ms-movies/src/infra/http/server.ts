@@ -3,8 +3,8 @@ import cookieParser from "cookie-parser";
 import { configEnv } from "@shared/config";
 import { handleNotFound, handleError } from "@infra/http/middlewares/handle-error";
 import { AppLogger } from "@shared/logger";
+import "@infra/container";
 
-// import "@infra/container";
 export class Server {
   private app: Application;
   private port: number = configEnv.PORT;
@@ -22,7 +22,7 @@ export class Server {
     this.app.use(handleError);
   }
 
-  routes() {}
+  async routes() {}
 
   public start(): void {
     this.app.listen(this.port, () => {
