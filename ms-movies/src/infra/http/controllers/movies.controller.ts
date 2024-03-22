@@ -1,4 +1,4 @@
-import { getUpcomingMovies } from "@infra/proxy/movie.proxy";
+import { getUpcomingMovies } from "@infra/proxy/movies";
 import { Request, Response, NextFunction } from "express";
 
 export class MovieController {
