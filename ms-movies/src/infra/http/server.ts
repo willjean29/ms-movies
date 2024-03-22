@@ -5,6 +5,7 @@ import { handleNotFound, handleError } from "@infra/http/middlewares/handle-erro
 import { AppLogger } from "@shared/logger";
 import { router } from "@infra/http/routes";
 import "@infra/container";
+import "@infra/data/postgres/connection";
 
 export class Server {
   private app: Application;
