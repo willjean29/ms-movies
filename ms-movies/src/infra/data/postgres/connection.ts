@@ -1,5 +1,5 @@
-import { AppLogger } from "@shared/logger";
 import { DataSource } from "typeorm";
+import { AppLogger } from "../../../shared/logger";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
