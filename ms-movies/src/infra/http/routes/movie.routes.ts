@@ -6,6 +6,7 @@ export class MovieRoutes {
     const router = Router();
     const movieController = new MovieController();
     router.get("/upcoming", movieController.upcomingMovies);
+    router.post("/register", movieController.saveMovie);
     return router;
   }
 }
