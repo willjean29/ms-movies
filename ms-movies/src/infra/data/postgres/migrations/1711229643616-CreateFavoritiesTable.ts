@@ -16,7 +16,7 @@ export class CreateFavoritesTable1711229643616 implements MigrationInterface {
           },
           {
             name: "user_id",
-            type: "int",
+            type: "varchar",
           },
           {
             name: "is_active",

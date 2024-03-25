@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { MovieModel } from "./movie.model";
 
 @Entity("favorites")
 export class FavoriteModel {
@@ -8,6 +9,8 @@ export class FavoriteModel {
   user_id: string;
   @Column("boolean")
   is_active: boolean;
-  @Column("int")
-  movie_id: number;
+
+  @ManyToOne(() => MovieModel)
+  @JoinColumn({ name: "movie_id" })
+  movie: MovieModel;
 }

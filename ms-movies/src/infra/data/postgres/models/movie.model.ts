@@ -7,7 +7,7 @@ export class MovieModel {
   @Column("bool")
   adult: boolean;
   @Column()
-  backdrop_path: string | null;
+  backdrop_path: string;
   @Column({
     array: true,
     type: "int",
@@ -22,7 +22,7 @@ export class MovieModel {
   @Column("decimal")
   popularity: number;
   @Column()
-  poster_path: string | null;
+  poster_path: string;
   @Column()
   release_date: string;
   @Column()
