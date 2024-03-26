@@ -9,6 +9,9 @@ export class MovieRepository implements IMovieRepository {
     @inject("MovieDatasource")
     private datasource: IMovieDatasource
   ) {}
+  findById(movieId: number): Promise<MovieEntity | null> {
+    return this.datasource.findById(movieId);
+  }
   save(movieDto: MovieEntity): Promise<MovieEntity> {
     return this.datasource.save(movieDto);
   }

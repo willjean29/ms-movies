@@ -9,6 +9,16 @@ export class PostegresMovieDatasource implements IMovieDatasource {
   constructor() {
     this.repository = new Repository(MovieModel, new EntityManager(AppDataSource));
   }
+
+  async findById(movieId: number): Promise<MovieEntity | null> {
+    const movie = await this.repository.findOne({
+      where: {
+        id: movieId,
+      },
+    });
+    if (!movie) return null;
+    return movie;
+  }
   async save(movieDto: MovieEntity): Promise<MovieEntity> {
     const movie = this.repository.create(movieDto);
     await this.repository.save(movie);
