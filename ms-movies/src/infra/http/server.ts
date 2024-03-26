@@ -2,6 +2,7 @@ import express, { Application } from "express";
 import cookieParser from "cookie-parser";
 import { configEnv } from "@shared/config";
 import { handleNotFound, handleError } from "@infra/http/middlewares/handle-error";
+import { validateUser } from "@infra/http/middlewares/validate-user";
 import { AppLogger } from "@shared/logger";
 import { router } from "@infra/http/routes";
 import "@infra/container";
@@ -19,6 +20,7 @@ export class Server {
   middlewares() {
     this.app.use(express.json());
     this.app.use(cookieParser());
+    this.app.use(validateUser);
     this.routes();
     this.app.use(handleNotFound);
     this.app.use(handleError);
