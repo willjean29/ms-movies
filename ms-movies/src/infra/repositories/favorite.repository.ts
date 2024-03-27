@@ -15,4 +15,7 @@ export class FavoriteRepository implements IFavoriteRepository {
   create(movieDto: MovieEntity, userId: string): Promise<MovieEntity> {
     return this.datasource.create(movieDto, userId);
   }
+  findById(id: string): Promise<MovieEntity | null> {
+    return this.datasource.findById(id);
+  }
 }

@@ -9,6 +9,7 @@ export class MovieRoutes {
     router.post("/register", movieController.saveMovie);
     router.post("/favorites", movieController.addFavorite);
     router.get("/favorites", movieController.findAllFavorite);
+    router.get("/favorites/:id", movieController.findByIdFavorite);
     return router;
   }
 }

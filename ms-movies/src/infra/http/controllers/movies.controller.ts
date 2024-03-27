@@ -4,6 +4,7 @@ import { Request, Response, NextFunction } from "express";
 import { container } from "tsyringe";
 import { AddFavoriteUseCase } from "../../../app/add-favorite.usecase";
 import { FindAllFavoriteUseCase } from "@app/find-all-favorite";
+import { FindByIdFavorite } from "@app/find-by-id-favorite.usecase";
 
 export class MovieController {
   async upcomingMovies(req: Request, res: Response, next: NextFunction) {
@@ -38,6 +39,17 @@ export class MovieController {
       const findAllFavorite = container.resolve(FindAllFavoriteUseCase);
       const favorites = await findAllFavorite.execute(req.user.id);
       res.json(favorites);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async findByIdFavorite(req: Request, res: Response, next: NextFunction) {
+    try {
+      const favoriteId = req.params.id;
+      const findByIdFavorite = container.resolve(FindByIdFavorite);
+      const favorite = await findByIdFavorite.execute(favoriteId);
+      res.json(favorite);
     } catch (error) {
       next(error);
     }

@@ -31,7 +31,14 @@ export class PostegreFavoriteDatasource implements IFavoriteDatasource {
       },
       relations: ["movie"],
     });
-    console.log({ favorites });
     return favorites as any;
+  }
+  async findById(id: string): Promise<MovieEntity | null> {
+    const favorite = await this.repository.findOne({
+      where: { id },
+      relations: ["movie"],
+    });
+    if (!favorite) return null;
+    return favorite.movie;
   }
 }
