@@ -8,7 +8,7 @@ export class MovieRoutes {
     router.get("/upcoming", movieController.upcomingMovies);
     router.post("/register", movieController.saveMovie);
     router.post("/favorites", movieController.addFavorite);
-
+    router.get("/favorites", movieController.findAllFavorite);
     return router;
   }
 }

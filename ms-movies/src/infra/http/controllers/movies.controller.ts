@@ -3,6 +3,7 @@ import { getUpcomingMovies } from "@infra/proxy/movies";
 import { Request, Response, NextFunction } from "express";
 import { container } from "tsyringe";
 import { AddFavoriteUseCase } from "../../../app/add-favorite.usecase";
+import { FindAllFavoriteUseCase } from "@app/find-all-favorite";
 
 export class MovieController {
   async upcomingMovies(req: Request, res: Response, next: NextFunction) {
@@ -28,6 +29,15 @@ export class MovieController {
       const addFavroite = container.resolve(AddFavoriteUseCase);
       const movie = await addFavroite.execute(req.body, req.user.id);
       res.json(movie);
+    } catch (error) {
+      next(error);
+    }
+  }
+  async findAllFavorite(req: Request, res: Response, next: NextFunction) {
+    try {
+      const findAllFavorite = container.resolve(FindAllFavoriteUseCase);
+      const favorites = await findAllFavorite.execute(req.user.id);
+      res.json(favorites);
     } catch (error) {
       next(error);
     }

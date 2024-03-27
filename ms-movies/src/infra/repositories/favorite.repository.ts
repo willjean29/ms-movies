@@ -9,6 +9,9 @@ export class FavoriteRepository implements IFavoriteRepository {
     @inject("FavoriteDatasource")
     private datasource: IFavoriteDatasource
   ) {}
+  findAll(userId: string): Promise<MovieEntity[]> {
+    return this.datasource.findAll(userId);
+  }
   create(movieDto: MovieEntity, userId: string): Promise<MovieEntity> {
     return this.datasource.create(movieDto, userId);
   }

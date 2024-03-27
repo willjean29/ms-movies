@@ -11,6 +11,7 @@ export class PostegreFavoriteDatasource implements IFavoriteDatasource {
   constructor() {
     this.repository = new Repository(FavoriteModel, new EntityManager(AppDataSource));
   }
+
   async create(movieDto: MovieEntity, userId: string): Promise<MovieEntity> {
     let movie = await this.movieDatasource.findById(movieDto.id);
     if (!movie) {
@@ -22,5 +23,15 @@ export class PostegreFavoriteDatasource implements IFavoriteDatasource {
     });
     await this.repository.save(favorite);
     return movie;
+  }
+  async findAll(userId: string): Promise<MovieEntity[]> {
+    const favorites = await this.repository.find({
+      where: {
+        user_id: userId,
+      },
+      relations: ["movie"],
+    });
+    console.log({ favorites });
+    return favorites as any;
   }
 }
