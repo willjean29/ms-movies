@@ -24,6 +24,7 @@ export class PostegreFavoriteDatasource implements IFavoriteDatasource {
     await this.repository.save(favorite);
     return movie;
   }
+
   async findAll(userId: string): Promise<MovieEntity[]> {
     const favorites = await this.repository.find({
       where: {
@@ -33,6 +34,7 @@ export class PostegreFavoriteDatasource implements IFavoriteDatasource {
     });
     return favorites as any;
   }
+
   async findById(id: string): Promise<MovieEntity | null> {
     const favorite = await this.repository.findOne({
       where: { id },
@@ -40,5 +42,10 @@ export class PostegreFavoriteDatasource implements IFavoriteDatasource {
     });
     if (!favorite) return null;
     return favorite.movie;
+  }
+
+  async remove(id: string): Promise<string> {
+    await this.repository.delete(id);
+    return "Favorite movie removed";
   }
 }

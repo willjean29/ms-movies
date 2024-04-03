@@ -5,6 +5,7 @@ import { container } from "tsyringe";
 import { AddFavoriteUseCase } from "../../../app/add-favorite.usecase";
 import { FindAllFavoriteUseCase } from "@app/find-all-favorite";
 import { FindByIdFavorite } from "@app/find-by-id-favorite.usecase";
+import { RemoveFavoriteUseCase } from "@app/remove-favorite.usecase";
 
 export class MovieController {
   async upcomingMovies(req: Request, res: Response, next: NextFunction) {
@@ -50,6 +51,19 @@ export class MovieController {
       const findByIdFavorite = container.resolve(FindByIdFavorite);
       const favorite = await findByIdFavorite.execute(favoriteId);
       res.json(favorite);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async removeFavorite(req: Request, res: Response, next: NextFunction) {
+    try {
+      const favoriteId = req.params.id;
+      const removeFavorite = container.resolve(RemoveFavoriteUseCase);
+      const response = await removeFavorite.execute(favoriteId);
+      res.json({
+        message: response,
+      });
     } catch (error) {
       next(error);
     }

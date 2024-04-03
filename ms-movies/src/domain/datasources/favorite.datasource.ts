@@ -4,4 +4,5 @@ export interface IFavoriteDatasource {
   create(movieDto: MovieEntity, userId: string): Promise<MovieEntity>;
   findAll(userId: string): Promise<MovieEntity[]>;
   findById(id: string): Promise<MovieEntity | null>;
+  remove(id: string): Promise<string>;
 }

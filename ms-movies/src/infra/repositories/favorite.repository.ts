@@ -18,4 +18,7 @@ export class FavoriteRepository implements IFavoriteRepository {
   findById(id: string): Promise<MovieEntity | null> {
     return this.datasource.findById(id);
   }
+  remove(id: string): Promise<string> {
+    return this.datasource.remove(id);
+  }
 }
