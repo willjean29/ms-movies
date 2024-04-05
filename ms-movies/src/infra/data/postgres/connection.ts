@@ -1,6 +1,7 @@
 import { DataSource } from "typeorm";
 import { AppLogger } from "@shared/logger";
 import { configEnv } from "@shared/config";
+
 export const AppDataSource = new DataSource({
   type: "postgres",
   host: configEnv.DB_HOST,
