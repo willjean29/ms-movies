@@ -1,0 +1,43 @@
+version: '3.8'
+
+services: 
+  gateway:
+    container_name: gateway
+    build: ./gateway
+    volumes:
+      - ./gateway:/app
+      - /app/node_modules
+    ports:
+      - "8000:8000"
+  
+  ms-users:
+    container_name: ms-users
+    build: ./ms-users
+    volumes:
+      - ./ms-users:/app
+      - /app/node_modules
+    ports:
+      - "8001:8001"
+  
+  ms-movies:
+    container_name: ms-movies
+    build: ./ms-movies
+    volumes:
+      - ./ms-movies:/app
+      - /app/node_modules
+    ports:
+      - "8002:8002"
+  
+  # db-ms-movies:
+  #   image: postgres:14.3
+  #   restart: always
+  #   ports:
+  #     - "5432:5432"
+  #   environment:
+  #     POSTGRES_PASSWORD: ${DB_PASSWORD}
+  #     POSTGRES_DB: ${DB_NAME}
+  #   container_name: ${DB_NAME}
+  #   volumes:
+  #     - ./data/postgres:/var/lib/postgresql/data
+
+    
