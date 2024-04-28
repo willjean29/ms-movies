@@ -1,6 +1,6 @@
-version: '3.8'
+version: "3.8"
 
-services: 
+services:
   gateway:
     container_name: gateway
     build: ./gateway
@@ -9,7 +9,9 @@ services:
       - /app/node_modules
     ports:
       - "8000:8000"
-  
+    networks:
+      - ms-movies
+
   ms-users:
     container_name: ms-users
     build: ./ms-users
@@ -18,7 +20,9 @@ services:
       - /app/node_modules
     ports:
       - "8001:8001"
-  
+    networks:
+      - ms-movies
+
   ms-movies:
     depends_on:
       - db-ms-movies
@@ -29,7 +33,9 @@ services:
       - /app/node_modules
     ports:
       - "8002:8002"
-  
+    networks:
+      - ms-movies
+
   db-ms-movies:
     image: postgres:14.3
     restart: always
@@ -40,4 +46,9 @@ services:
       POSTGRES_DB: ${DB_NAME}
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
-    
+    networks:
+      - ms-movies
+
+networks:
+  ms-movies:
+    driver: bridge
